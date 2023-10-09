@@ -12,12 +12,14 @@ features = pickle.load(open('code/features.pkl','rb'))
 model = load_model('code/best_model.h5')
 max_length = 34
 
+# convert index generated to word
 def idx_to_word(integer,tokenizer):
     for word,index in tokenizer.word_index.items():
         if index==integer:
             return word
     return None
 
+# predict caption
 def predict_caption(model,image,tokenizer,max_length):
     in_text = 'startseq'
     for i in range(max_length):
